@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Firebase',
       theme: ThemeData(
         useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
         dialogBackgroundColor: kWhite,
       ),
       builder: FlutterSmartDialog.init(),

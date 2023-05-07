@@ -26,6 +26,7 @@ class _SignUpViewState extends State<SignUpView> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _conformpasswordController = TextEditingController();
   final _fromKey = GlobalKey<FormState>();
 
   bool isObsecure = true;
@@ -120,6 +121,7 @@ class _SignUpViewState extends State<SignUpView> {
                       ),
                       TextFieldWidget(
                         hintText: 'Conform Password',
+                        controller: _conformpasswordController,
                         isObsecure: isObsecure,
                         suffixIcon: InkWell(
                           onTap: () {
@@ -152,10 +154,18 @@ class _SignUpViewState extends State<SignUpView> {
                     getFlushBar(context, title: 'Email is Required');
                   } else if (_passwordController.text.isEmpty) {
                     getFlushBar(context, title: 'Password is Required');
+                  } else if (_passwordController.text.length <= 6) {
+                    getFlushBar(context,
+                        title: 'Password should be greater then 6 char');
+                  } else if (_conformpasswordController.text !=
+                      _passwordController.text) {
+                    getFlushBar(context,
+                        title: 'Conform password do not match');
+                  } else {
+                    _createAccount();
                   }
-                  // this is Question
 
-                  _createAccount();
+                  // this is Question
 
                   /// Form validation
 

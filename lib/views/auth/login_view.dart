@@ -104,6 +104,8 @@ class _LoginViewState extends State<LoginView> {
                   getFlushBar(context, title: 'Email is Required');
                 } else if (_passwordController.text.isEmpty) {
                   getFlushBar(context, title: 'Password is Required');
+                } else {
+                  _loginUser();
                 }
 
                 /// Form Validation
@@ -120,7 +122,6 @@ class _LoginViewState extends State<LoginView> {
                 //           builder: ((context) => const HomePage())));
                 //   SmartDialog.dismiss();
                 // }
-                _loginUser();
               },
             ),
 
@@ -130,7 +131,10 @@ class _LoginViewState extends State<LoginView> {
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: ((context) =>const ForgotPassword())));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const ForgotPassword())));
                     },
                     child: Text(
                       'Forgot Password',
