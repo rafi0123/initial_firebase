@@ -17,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
 
     Timer(const Duration(seconds: 2), () {
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: ((context) => FirebaseAuth.instance.currentUser != null

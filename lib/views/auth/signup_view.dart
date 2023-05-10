@@ -28,6 +28,14 @@ class _SignUpViewState extends State<SignUpView> {
   final _passwordController = TextEditingController();
   final _conformpasswordController = TextEditingController();
   final _fromKey = GlobalKey<FormState>();
+  bool validateEmail(String email) {
+    // Regular expression pattern to match email format
+    const pattern = r'^[\w-]+(\.[\w-]+)*@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$';
+    final regex = RegExp(pattern);
+
+    // Check if the email matches the pattern
+    return regex.hasMatch(email);
+  }
 
   bool isObsecure = true;
 
@@ -152,6 +160,10 @@ class _SignUpViewState extends State<SignUpView> {
                     getFlushBar(context, title: 'Name is Required');
                   } else if (_emailController.text.isEmpty) {
                     getFlushBar(context, title: 'Email is Required');
+                  } else if (!validateEmail(
+                      _emailController.value.toString())) {
+                    getFlushBar(context,
+                        title: 'Please enter a valid email address');
                   } else if (_passwordController.text.isEmpty) {
                     getFlushBar(context, title: 'Password is Required');
                   } else if (_passwordController.text.length <= 6) {
@@ -201,7 +213,7 @@ class _SignUpViewState extends State<SignUpView> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => LoginView())));
+                                  builder: ((context) =>const LoginView())));
                         }),
                 ])),
               ),
