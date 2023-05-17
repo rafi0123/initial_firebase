@@ -19,10 +19,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Firebase',
       theme: ThemeData(
-        useMaterial3: true,
-        scaffoldBackgroundColor: Colors.white,
-        dialogBackgroundColor: kWhite,
-      ),
+          useMaterial3: true,
+          scaffoldBackgroundColor: Colors.white,
+          dialogBackgroundColor: kWhite,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Theme.of(context).canvasColor,
+          )),
       builder: FlutterSmartDialog.init(),
       home: const SplashView(),
     );

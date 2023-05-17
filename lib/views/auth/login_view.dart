@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'package:learn_firebase/widgets/flush_bar.dart';
 import 'package:learn_firebase/widgets/navigation_dialog.dart';
 import 'package:learn_firebase/widgets/text_field_widget.dart';
 
-import '../add_note_view/add_note.dart';
+import '../add_note_view/display_data.dart';
 import 'forgot_password.dart';
 
 class LoginView extends StatefulWidget {
@@ -121,8 +122,7 @@ class _LoginViewState extends State<LoginView> {
                 ontap: () {
                   if (_emailController.text.isEmpty) {
                     getFlushBar(context, title: 'Email is Required');
-                  } else if (!validateEmail(
-                      _emailController.value.toString())) {
+                  } else if (!validateEmail(_emailController.text.toString())) {
                     getFlushBar(context,
                         title: 'Please enter a valid email address');
                   } else if (_passwordController.text.isEmpty) {
@@ -216,8 +216,8 @@ class _LoginViewState extends State<LoginView> {
               password: _passwordController.text.trim())
           .then((value) {
         SmartDialog.dismiss();
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const AddNote()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const DisplayData()));
       });
     } catch (e) {
       SmartDialog.dismiss();

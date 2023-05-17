@@ -3,20 +3,23 @@ import 'package:learn_firebase/utils/app_color.dart';
 
 // ignore: must_be_immutable
 class TextFieldWidget extends StatelessWidget {
-  TextFieldWidget(
-      {super.key,
-      this.validator,
-      this.controller,
-      this.keyBordType = TextInputType.name,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.fillColor = kWhite,
-      this.isborder = true,
-      required this.hintText,
-      this.isDense = false,
-      this.hPadding = 10,
-      this.vPadding = 15,
-      this.isObsecure = false});
+  TextFieldWidget({
+    super.key,
+    this.validator,
+    this.controller,
+    this.keyBordType = TextInputType.name,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.fillColor = kWhite,
+    this.isborder = true,
+    required this.hintText,
+    this.isDense = false,
+    this.hPadding = 10,
+    this.vPadding = 15,
+    this.isObsecure = false,
+    this.isMultiline = false,
+    this.onTextChanged,
+  });
 
   String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -30,6 +33,8 @@ class TextFieldWidget extends StatelessWidget {
   final bool? isDense;
   final double hPadding;
   final double vPadding;
+  final bool isMultiline;
+  final Function? onTextChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +42,10 @@ class TextFieldWidget extends StatelessWidget {
       controller: controller,
       validator: validator,
       obscureText: isObsecure!,
+      maxLines: isMultiline ? 4 : 1,
+      onChanged: (value) {
+        onTextChanged!(value);
+      },
       decoration: InputDecoration(
         hintText: hintText,
         filled: true,

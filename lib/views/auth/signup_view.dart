@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:learn_firebase/views/auth/login_view.dart';
-import 'package:learn_firebase/views/add_note_view/add_note.dart';
 import 'package:learn_firebase/widgets/custom_button.dart';
 import 'package:learn_firebase/widgets/custom_loader.dart';
 import 'package:learn_firebase/widgets/flush_bar.dart';
@@ -160,8 +158,7 @@ class _SignUpViewState extends State<SignUpView> {
                     getFlushBar(context, title: 'Name is Required');
                   } else if (_emailController.text.isEmpty) {
                     getFlushBar(context, title: 'Email is Required');
-                  } else if (!validateEmail(
-                      _emailController.value.toString())) {
+                  } else if (!validateEmail(_emailController.text.toString())) {
                     getFlushBar(context,
                         title: 'Please enter a valid email address');
                   } else if (_passwordController.text.isEmpty) {
@@ -202,7 +199,7 @@ class _SignUpViewState extends State<SignUpView> {
               Center(
                 child: Text.rich(TextSpan(children: [
                   TextSpan(
-                    text: "Don't have an account ",
+                    text: "If you have already an account ",
                     style: kPoppinRegular,
                   ),
                   TextSpan(
@@ -213,7 +210,7 @@ class _SignUpViewState extends State<SignUpView> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) =>const LoginView())));
+                                  builder: ((context) => const LoginView())));
                         }),
                 ])),
               ),

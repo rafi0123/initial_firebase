@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:learn_firebase/views/add_note_view/add_note.dart';
+import 'package:learn_firebase/views/add_note_view/display_data.dart';
 import 'auth/login_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -21,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
           context,
           MaterialPageRoute(
               builder: ((context) => FirebaseAuth.instance.currentUser != null
-                  ? const AddNote()
+                  ? const DisplayData()
                   : const LoginView())));
     });
   }
